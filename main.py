@@ -43,6 +43,7 @@ if abs(sum(output.iloc[:, 2].to_numpy())) <= TOL:
     if abs(sum(output.iloc[:, 0].to_numpy()) - sum(output.iloc[:, 1].to_numpy())) <= TOL:
         output = output.round(2)
         output.to_csv('output.csv')
+        print("Output Generated.")
 else:
     print("Error with output. Check if data is valid:")
     print(df)
