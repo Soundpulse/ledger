@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import sys
 
 # Read file
 df = pd.read_csv('ledger.csv', parse_dates=['dt'], infer_datetime_format=True)
@@ -9,7 +10,7 @@ m, n = df.shape
 
 # initialize output dataframe
 output = pd.DataFrame(np.zeros([4, 3]), columns=['Spent', 'Paid', 'To Be Paid'],
-                      index=df.columns.values[4:8])
+                      index=['Toby', 'Meng', 'James', 'Lianchun'])
 
 # iterate over each spending, calculate average then associate to appropriate personnel.
 i = 0
@@ -17,10 +18,14 @@ while i < m:
     no_of_person_involved = 0
     related_personnel = []
 
-    for j in range(4, 8):
-        if df.iloc[i, j] == 1:
-            no_of_person_involved += 1
-            related_personnel.append(df.columns.values[j])
+    related_personnel = df.iloc[i, 4].split(";", 4)
+    no_of_person_involved = len(related_personnel)
+
+    # # Old
+    # for j in range(4, 8):
+    #     if df.iloc[i, j] == 1:
+    #         no_of_person_involved += 1
+    #         related_personnel.append(df.columns.values[j])
 
     # Average
     per_person = df.iloc[i, 3]/no_of_person_involved
