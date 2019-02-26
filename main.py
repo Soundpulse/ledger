@@ -3,7 +3,10 @@ import numpy as np
 import sys
 
 # Read file
-df = pd.read_csv('ledger.csv', parse_dates=['dt'], infer_datetime_format=True)
+df = pd.read_csv('记账.csv', parse_dates=['日期'], infer_datetime_format=True, skipinitialspace=True, quotechar='"')
+
+# Modify file to suit format cuz i'm lazy
+df = df.drop(['時間戳記'], axis=1)
 
 # iterate over each line
 m, n = df.shape
@@ -31,7 +34,7 @@ while i < m:
     per_person = df.iloc[i, 3]/no_of_person_involved
 
     # Paid
-    output.loc[df.iloc[i, 1]][1] += df.iloc[i, 3]
+    output.loc[df.iloc[i, 0]][1] += df.iloc[i, 3]
 
     # Assign Spent
     for person in related_personnel:
