@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-import sys
 
 # Read file
 df = pd.read_csv('记账.csv', parse_dates=['日期'], infer_datetime_format=True, skipinitialspace=True, quotechar='"')
