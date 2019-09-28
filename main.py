@@ -11,8 +11,10 @@ df = df.drop(['時間戳記'], axis=1)
 m, n = df.shape
 
 # initialize output dataframe
-output = pd.DataFrame(np.zeros([4, 3]), columns=['Spent', 'Paid', 'To Be Paid'],
-                      index=['Toby', 'Meng', 'James', 'Lianchun'])
+output = pd.DataFrame(np.zeros([5, 3]), columns=['Spent', 'Paid', 'To Be Paid'],
+                      index=['Toby', 'Meng', 'James', 'Lianchun', 'Daniel'])
+
+print(df)
 
 # iterate over each spending, calculate average then associate to appropriate personnel.
 i = 0
@@ -20,7 +22,7 @@ while i < m:
     no_of_person_involved = 0
     related_personnel = []
 
-    related_personnel = df.iloc[i, 4].split(";", 4)
+    related_personnel = df.iloc[i, 4].split(";", 5)
     no_of_person_involved = len(related_personnel)
 
     # # Old
